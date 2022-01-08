@@ -1,0 +1,41 @@
+public class vanderWaals {
+
+    public void hacimHesap(){
+
+        Scanner verial = new Scanner(System.in);
+
+        System.out.println("Gazın sıcaklığını Kelvin biriminde giriniz: ");
+        int T = verial.nextInt();
+
+        System.out.println("Gazın basıncını atm biriminde giriniz: ");
+        double P = verial.nextDouble();
+        double R = 0.082054;
+
+        ArrayList<Double> v = new ArrayList<Double>();
+
+        v.add((R*T)/P);
+
+        double a = 12.02;
+        double b = 0.08407;
+
+        for(int u=0;u<=100;u++) {
+
+            double fv = ((P * (v.get(u) * v.get(u) * v.get(u))) - (((P * b) + (R * T)) * v.get(u) * v.get(u)) + (a * v.get(u)) - (a * b));
+            double fvt = ((3 * P * (v.get(u) * v.get(u))) - (2 * ((P * b) + (R * T) * v.get(u))) + a);
+
+            v.add(v.get(u) - (fv / fvt));
+
+            double Ea = Math.abs((v.get(u+1) - v.get(u)) / v.get(u+1)) * 100;
+
+            if (Ea <= 0.1) {
+                System.out.println("Etil alkolün 400K ve 2.5atm'deki molal hacmi: " + v.get(u+1));
+                System.out.println("Hata oranı: %"+Ea);
+                System.out.println("İterasyon sayısı: "+(u+1));
+                break;
+            }
+            else {
+                continue;
+            }
+        }
+    }
+}
