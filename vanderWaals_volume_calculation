@@ -4,33 +4,37 @@ public class vanderWaals {
 
         Scanner scan = new Scanner(System.in);
 
-        System.out.println("Enter the gas' temperature in Kelvin unit: ");
+        System.out.println("Enter the gas temperature in Kelvin unit: ");
         int T = scan.nextInt();
 
-        System.out.println("Enter the gas' pressure in atm unit: ");
+        System.out.println("Enter the gas pressure in atm unit: ");
         double P = scan.nextDouble();
+
+        //gas constant
         double R = 0.082054;
 
+        //a list for calculated volumes
         ArrayList<Double> v = new ArrayList<Double>();
 
         //initial volume
         v.add((R*T)/P);
 
-        System.out.println("Enter the gas' a constant: ");
+        System.out.println("Enter the constant a of the gas: ");
         double a = scan.nextDouble();
 
-        System.out.println("Enter the gas' b constant: ");
+        System.out.println("Enter the constant b of the gas: ");
         double b = scan.nextDouble();
 
         System.out.println("Enter the desired error rate: ");
         double e = scan.nextDouble();
 
+        //loop until it reaches the desired error value (max 100 loops, it's changeable)
         for(int u=0;u<=100;u++) {
 
             //vanderwaals equation (fv)
             double fv = ((P * (v.get(u) * v.get(u) * v.get(u))) - (((P * b) + (R * T)) * v.get(u) * v.get(u)) + (a * v.get(u)) - (a * b));
-            
-            //derivative of vanderwaals equation (ftv)
+
+            //derivation of vanderwaals equation (fvt)
             double fvt = ((3 * P * (v.get(u) * v.get(u))) - (2 * ((P * b) + (R * T) * v.get(u))) + a);
 
             //new volume calculation with newton-raphson method
