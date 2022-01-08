@@ -44,7 +44,7 @@ public class vanderWaals {
             double Ea = Math.abs((v.get(u+1) - v.get(u)) / v.get(u+1)) * 100;
 
             if (Ea <= e) {
-                System.out.println("The gas' molar volume: " + v.get(u+1));
+                System.out.println("Molar volume of the gas: " + v.get(u+1));
                 System.out.println("Error rate: "+Ea+"%");
                 System.out.println("Number of iterations: "+(u+1));
                 break;
