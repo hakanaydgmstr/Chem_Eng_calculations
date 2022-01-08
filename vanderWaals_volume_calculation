@@ -13,6 +13,7 @@ public class vanderWaals {
 
         ArrayList<Double> v = new ArrayList<Double>();
 
+        //initial volume
         v.add((R*T)/P);
 
         System.out.println("Enter the gas' a constant: ");
@@ -26,11 +27,16 @@ public class vanderWaals {
 
         for(int u=0;u<=100;u++) {
 
+            //vanderwaals equation (fv)
             double fv = ((P * (v.get(u) * v.get(u) * v.get(u))) - (((P * b) + (R * T)) * v.get(u) * v.get(u)) + (a * v.get(u)) - (a * b));
+            
+            //derivative of vanderwaals equation (ftv)
             double fvt = ((3 * P * (v.get(u) * v.get(u))) - (2 * ((P * b) + (R * T) * v.get(u))) + a);
 
+            //new volume calculation with newton-raphson method
             v.add(v.get(u) - (fv / fvt));
 
+            //error calculation
             double Ea = Math.abs((v.get(u+1) - v.get(u)) / v.get(u+1)) * 100;
 
             if (Ea <= e) {
