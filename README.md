@@ -1,2 +1,2 @@
-# vanderwaals-volume-calculation
-Volume calculation for the real gases in Java.
+# Mathematical Calculations
+Mathematical calculations for chemical engineering in Java.
